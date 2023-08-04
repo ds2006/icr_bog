@@ -1,0 +1,200 @@
+
+\documentclass[letterpaper, 12 pt, conference]{ieeeconf} 
+
+\IEEEoverridecommandlockouts                              
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+
+
+% The following packages can be found on http:\\www.ctan.org
+\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb}  % assumes amsmath package installed
+
+\usepackage{url}
+\usepackage[ruled, vlined, linesnumbered]{algorithm2e}
+%\usepackage{algorithm}
+\usepackage{verbatim} 
+%\usepackage[noend]{algpseudocode}
+\usepackage{soul, color}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage{fourier} 
+\usepackage{array}
+\usepackage{makecell}
+
+\SetNlSty{large}{}{:}
+
+\renewcommand\theadalign{bc}
+\renewcommand\theadfont{\bfseries}
+\renewcommand\theadgape{\Gape[4pt]}
+\renewcommand\cellgape{\Gape[4pt]}
+
+\newcommand{\rework}[1]{\todo[color=yellow,inline]{#1}}
+
+\makeatletter
+\newcommand{\rom}[1]{\romannumeral #1}
+\newcommand{\Rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+\pagestyle{plain} 
+
+\title{\LARGE \bf
+Modernizing Models of Care for Psychology (MMCP): Using online, self-guided, low-intensity support to make a difference
+}
+
+
+
+\author{Diya Shah, Shreya Ragade% <-this % stops a space 
+\\ \\
+Dr. Carla Allan%
+\\ Head of the Division of Psychology \\
+Phoenix Children’s Hospital \\
+1919 E Thomas Rd, Phoenix, AZ 85016\\
+{\tt\small callan1@phoenixchildrens.com}
+}
+
+
+\begin{document}
+
+
+
+\maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{abstract}
+
+This research paper aims at exploring the correlation between comments on a community thread and mental health. As a part of Dr. Allan's Be Our Guest behavioral training online program, we were tasked with creating a community based web page similar to Reddit and Stack Overflow that runs a emotional algorithm (resulting in a positive or negative response) on comments within the mentioned community threads. Through the use of Sentiment Analysis - a method of emotional classification on different bodies of text - we aimed to collect a database of information to then analyze the effectiveness of the program. This paper also aims to analyze various algorithms used to solve the same problem.
+
+This project intends to collect and assess the mental health of individuals and their children, both through manual surveys and an online forum as a potential (ALTERNATIVE/PRECURSOR) to traditional family therapy methods. By using both techniques to measure the progress of individuals over time, a final treatment plan can be determined, whether that be a SSI (Single-Session Intervention) if the individuals are continuing to fare negatively, or successful completion of the program should it prove successful for the individual.s
+
+Modules containing relevant techniques were introduced to patients, with a survey being administered each week to determine the progress of the patient. To simulate the community aspect of typical group therapy, a forum was created through use of Lemmy, a free and open source software with the ability to host online conversations. A sentiment analysis software known as Vader was then used to analyze the conversations between individuals based on their level of emotion. Subsequently, the survey data was processed and compared to the results gathered from the forum. Both means were used to examine the progress of the patient, as well as the potential next steps.  
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{INTRODUCTION}
+
+\subsection{Machine Learning}
+
+
+Machine learning, a transformative technology at the intersection of computer science, statistics, and artificial intelligence, holds the potential to revolutionize industries and elevate decision-making processes through the effective harnessing of vast amounts of data. Machine learning is a branch of Artificial Intelligence which focuses on the use of mass data and computer algorithms to imitate the way that human's learn. There are two subsets of Machine Learning: supervised learning and unsupervised learning. Supervised learning is a machine learning model that can predict the properties of unlabeled data given and labeled data or input. This is done through methods such as regression and classification. Unsupervised learning is a model that predicts the patterns in unlabeled data when none of the data is labeled. This is done through clustering, anomaly detection, and dimensionality reduction. Natural Language processing is an example of supervised learning. 
+
+\subsection{Sentiment Analysis} 
+Sentiment analysis involves computationally analyzing text to discern writers' attitudes towards specific topics. By using advanced AI and machine learning algorithms, it classifies sentiments into positive, negative, and neutral categories. In our digital world, sentiment analysis is crucial for monitoring sentiments across diverse data types. It empowers businesses to swiftly identify positive and negative customer reviews, address concerns, and enhance satisfaction. Despite challenges, sentiment analysis remains essential for data-driven decision-making in our interconnected world.
+
+\subsection{Lemmy}
+The concept of the Fediverse traces back to the early 2008s when the desire for decentralized social networks gained traction within the free and open-source software community. Projects like GNU Social (formerly StatusNet) and Diaspora pioneered the concept of federated social networking, laying the groundwork for the Fediverse's later expansion. The Fediverse allows users of different instances and services to communicate with other users using the ActivityPub software. The need for a platform such as this was brought about by the observation of downfalls within servers hosted by companies looking for a continuous outlet for money rather than customer satisfaction. Lemmy, one aspect of the fediverse, is a free and open-source software for running discussion forums that was created with the idea of a frontend similar to that of Reddit. Lemmy is the frontend software that was used to host our instance which includes a weekly thread for parents to communicate on based on their progression through the course. 
+
+\subsection{Survey Data Collection}
+The second part of the project encompasses analyzing the responses collected from the patients of the program, consisting of eight surveys and sixty-three questions in total for the baseline measures, and six surveys (ADJUST THIS) for the follow-up. As the main means of tracking the progress of both the parents and children, it was imperative that the results could be displayed effectively, allowing clinicians to quickly compare the data gathered from the forum to the survey results and determine the trajectory of the patients' progress. Normalization measures and average values were utilized to consolidate and standardize the data. 
+
+This report documents the development of the NLP classification method used to analyse the connotation of particular comments and phrases. The process of creation of these algorithms along with the problems associated with their individual processes have been elucidated. Each algorithm is tested and the results are compared to draw conclusions of their strengths and weaknesses.   
+
+This paper is structured as follows: Section \Rom{2} provides details on the Lemmy interface and its installation process. Section \Rom{3} explains the backend interface and the sentiment analysis procedure. In Section \Rom{4} the details about results from the sentiment analysis are provided; followed by conclusions and references.
+
+\section{LEMMY INSTANCE}
+
+\subsection{Background}
+
+Lemmy is a superlative, open-source, federated platform resembling illustrious forums like Reddit and Stack Overflow. Users can create communities (instances) to share links, posts, and engage in discussions with other instances and users. Its decentralized nature allows autonomous instances to communicate, granting users data control and tailored moderation, an import factor in a world with ongoing data breaches.
+
+
+\subsection{Installation}
+
+The deployment of Lemmy involved using Docker and Docker Compose. The initial step was creating a Lemmy directory, where an hjson file and a yml file were generated. Both files had incomplete fields that we filled out with information from Dr. Allan. Subsequently, the permissions for the pictrs file were set. Using Docker Compose commands, we ran the files and created the web server. The installation process was relatively straightforward due to the pre-made files. However, it's essential to note that once the Lemmy instance's domain is set, it cannot be replaced or changed due to federation laws. After installation, we began filling out information fields, creating communities, and engaging in commenting and posting activities.
+
+
+\subsection{Postgres PSQL}
+In our project, a crucial aspect involved running a sentiment analysis program on user comments within our Lemmy instance. To access these comments, we utilized Postgres's terminal-based PSQL, enabling interactive querying and result visualization through the terminal. Through a specific Postgres command, we efficiently gathered all community comments, storing them in a Comma Separated Value (CSV) file. Subsequently, this file was fed into our classification program, extracting the comments column for analysis. The sentiment analysis program was then executed on this column, producing insightful results. The final output included the original comments alongside the corresponding sentiment analysis outcomes. This streamlined process provided valuable insights into user sentiments within our Lemmy instance, enhancing our understanding of community engagement and feedback.
+
+
+\section{NLP TEXT CLASSIFICATION METHODS}
+
+\subsection{Textblob}
+Textblob is a Python library used for Natural Language Processing. It utilizes the natural language toolkit (NLTK), enabling simple deployment, low resource consumption, and offering dependency parsing. When a sentence is passed into Textblob, it provides a polarity score ranging from -1 to 1, indicating negative to positive sentiment. Besides Sentiment Analysis, Textblob supports noun phrase extraction, part of speech tagging, tokenization, word inflection, lemmatization, WordNet integration, and more. While we initially chose Textblob due to its easy installation via "pip install," we encountered challenges with low accuracy levels and model training feasibility. As a result, we sought alternative solutions that better suited our research needs.
+
+\subsection{Scikit-Learn}
+Scikit-learn, a renowned Python library, is widely employed for machine learning tasks, encompassing support vector machines, neural networks, and more. Within Scikit-learn's framework, users access various data collection algorithms like clustering, classification, and regression. However, similar to Textblob, we faced challenges with inaccurate results and misinterpreted phrases. The model's reliance on built-in training data limited our ability to analyze test data effectively. Moreover, Scikit-learn's installation process was time-consuming. As a result, we sought alternative methodologies better aligned with our data analysis imperatives.
+
+
+\subsection{BERT classification}
+BERT (Bidirectional Encoder Representations from Transformers) is a sophisticated deep learning language model designed to enhance computers' comprehension of ambiguous language in text by leveraging surrounding text to establish context. Throughout our research, BERT emerged as a highly accurate model for sentiment analysis. Leveraging BERT, we were able to utilize custom train data and test data to effectively detect connotation in phrases. The model could efficiently read data from a CSV file and export results back into a CSV format. However, despite its promising capabilities, we encountered challenges in obtaining a numerical polarity score from BERT. This limitation left us dissatisfied with the simplistic binary output of positive or negative sentiment. Moreover, the installation process posed significant complexity, further impacting our decision-making. Regrettably, the combination of these challenges ultimately led us to conclude that BERT was not the ideal solution for our specific requirements.
+
+\subsection{Vader}
+VADER is a Sentiment Analysis model that considers both polarity and intensity, using a human-centric approach with human raters and crowd knowledge. VADER employs the Lexicon approach, building a comprehensive sentiment dictionary that effectively maps words to their respective sentiment categories. By examining the sentiment category or score of each word in a sentence, VADER accurately determines the overall sentiment category or score of the entire sentence. We found VADER to be the best fit for our needs due to its simple installation and ease of use. This model also produced fairly accurate compound scores. Moving forward, our aspiration is to further enhance VADER's capabilities by training it to detect elements of sarcasm and double meanings, elevating the sophistication and effectiveness of our sentiment analysis endeavors.
+
+
+\section{SURVEY QUESTIONS AND ANALYSIS}
+
+\subsection{Overall Intent of the Survey}
+With the number of mental health cases rising rapidly in the United States, a major hurdle to receiving care revolves around the long waiting times required before prospective patients can receive treatment. As traditional therapy can last anywhere from six weeks to over a year, the number of trained professionals capable of handling the rising number of cases is fundamentally insufficient, requiring a shift in the classic multiple-week sessions towards shorter, more expandable solutions. With this issue in mind, the Be Our Guest program was created by Dr. Carla Allan and Dr. Anil Chacko - a series of modules containing guidance relevant to parenting struggles in today's society. 
+
+
+\subsection{Content of the Questions}
+Consisting of eight surveys in total, the following surveys were used \textit{solely} for Baseline purposes: the Pediatric Symptom Checklist (PSC-17), BACE v3 - MODIFIED SF, and Caregiver Strain Questionnaire (CSQ). The other five were used both as Baseline and Follow-Up Measures: the SDQ Modified, Parenting Sense of Competence (PSoC), Fragile Families Aggravation in Parenting Scale, Family Empowerment Scale, and Parent Patient Activation Measure. 
+
+
+\subsection{Gathering \& Standardizing of the Data}
+
+With the Be Our Guest Program still in development, no official survey data currently exists. As a means of testing the program, mock-data was generated and then analyzed. As all of the survey data is numerical in its type, 
+
+
+
+\section{CONCLUSIONS}
+
+As the concepts of shorter-form therapy and pre-intervention measures continue to evolve, this forum-analysis prospect remains a remarkably unique development in the world of Psychology, potentially setting the stage for future programs used in similar ways for different problems. 
+
+\subsection{Potential Sources of Error}
+
+Though mainly a developmental project with less focus on traditional aspects of research, typical issues such as inconsistencies caused by human error are rendered minimal. However, aspects of the project that could still cause errors lie in the sentiment analysis model, Vader, and the multiple means of data transfer before being entered into the final product. As Vader is a pre-trained model, the capability to fine-tune its capabilities using data specifically gathered from this project is limited. Hence, Vader's limitations lie in its lack of flexibility, meaning that it will continue to classify sentiments in a consistent manner. While this is positive for the sentiments it classifies correctly, it will also continue to produce consistent errors in its judgements regarding certain sentiments, meaning that a model which learns as it analyzes would ultimately be a more suitable solution. Long-standing issues with NLP models such as major difficulties in identifying sarcasm and the correct sentiment in sentences containing contrasting messages also exist with Vader, meaning that other discrepancies within the sentiment analysis could also arise. Though the process of gathering and transferring the comments is currently limited to human-run commands, in the future, with this process shifted into an automated process, problems could arise in the transfer of the data from the website to a corresponding CSV file and then eventually to the visualization software, should there be network connectivity problems or other bugs in the system. 
+
+\subsection{Future Prospects for the Project}
+
+With a project so grand in its undertaking, multiple avenues of potential expansion exist for exploration. As the analysis software (Vader) is only a general software for sentiment analysis, creating a model trained specifically with sentiments tailored to the style found on the forum would help increase accuracy within the sentiment analysis software, allowing for more accurate predictions and helpful follow-up measures. As the data collection methods for the surveys are standardized, implementing the gathered data into some kind of visualization software, namely Microsoft Power BI, would allow for easier understanding of the data and a shortening of the time required to make decisions regarding patients. Once the Be Our Guest Program goes into effect, threshold values regarding final treatment options - namely, a SSI or completion of the program can be determined and visualized as well. Additionally, automating some of the processes, such as the collection and input of the comments from the forum into the spreadsheet would increase efficiency and allow for an entirely independent system.  
+
+
+
+\addtolength{\textheight}{-12cm}   
+
+
+\section*{ACKNOWLEDGMENT}
+
+We would like to thank the Institute for Computing in Research. We extend our sincere thanks to Dr. Carla Allan, our mentor, and intern Karli Cheng for the chance to research this project, to Maria de Hoyos for her help with the statistical portion of the data processing, and of course to Mark Galassi for his endless technical guidance and for giving us this opportunity.
+
+
+
+
+\begin{thebibliography}{99}
+
+\bibitem{c1} NeuralNine. (2023). PostgreSQL in Python - Crash Course [online]. Available: \url{https://www.youtube.com/watch?v=miEFm1CyjfM&t=88s&ab_channel=NeuralNine}. [Accessed 7 Jan. 2018].
+
+
+\bibitem{c2}Jonathan Mondaut. (2023). Fetching Data from RSS Feeds in Python: A comprehensive guide. [Online]. Available:\url{https://medium.com/fetching-data-from-rss-feeds-in-python-a-comprehensive-guide}. [Accessed: 20- Jul- 2023].
+
+\bibitem{c3}  NumFOCUS, Inc. (2023). Pandas Documentation.  [Online]. Available: \url{https://pandas.pydata.org/docs/user_guide/index.html#user-guide}. [Accessed: 28- Jul- 2023].
+
+
+\bibitem{c4} Dessalines. (2019). Lemmy Docs. Available: \url{https://join-lemmy.org/docs/introduction.html}. [Accessed: 17- Jul- 2023].
+
+\bibitem{c5} Pio Calderon. (2017). VADER Sentiment Analysis Explained. Available: \url{https://medium.com/@piocalderon/vader-sentiment-analysis-explained}. [Accessed: 25- Jul- 2023].
+
+\bibitem{c5} ProgrammingKnowledge. (2023). How To Install PostgreSQL on Ubuntu 22.04 LTS (Linux) (2023) Available: \url{https://www.youtube.com/watch?v=tducLYZzElo&t=566s&ab_channel=ProgrammingKnowledge}. [Accessed: 25- Jul- 2023].
+
+
+\end{thebibliography}
+
+\end{document}
