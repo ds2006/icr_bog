@@ -135,35 +135,21 @@ docker exec lemmy-postgres-1 /usr/local/bin/psql -U lemmy -d lemmy -c "select * 
 ### Run one of the below commands to access all of the comments for a post:
 ```
 docker exec lemmy_postgres_1 /usr/local/bin/psql -U lemmy -d lemmy -c "select * from comment;"
-
-docker exec lemmy-postgres-1 /usr/local/bin/psql -U lemmy -d lemmy -c "select * from comment;"
 ```
 
 ### Run the below command to save those comments to a csv file (with a | delimieter) 
 ```
 docker exec lemmy-postgres-1 /usr/local/bin/psql -U lemmy -d lemmy -c "select * from comment;" > 'input_file_name_here'.csv
 ```
-### Run the csv file through pgadmin4 to correct any formatting issues using the newTable.py code, but change the following:
+### Run the csv file through pgadmin4 to correct any formatting issues using the newTable.py code:
 ```
 python3 newTable.py
 ```
- conn = psycopg2.connect(host="host_name", dbname = "databasename", user="postgres",
-                        password = "password", port=5432)
 
- FROM 'FILE.csv'
-
- dataPhase.to_csv('EXPORT_FILE.csv', index=False)
-
-
-
-### Run, but change the following:
+### Run:
 ```
 python3 sentiment_lemmy_comments.py
 ```
-
- df=pd.read_csv("INSERT CSV FILE NAME HERE (The one that is now cleaned up).csv")
-
- f = open('ENTER OUTPUT FILE NAME HERE.csv', 'w')
 
 ### The sentiment analysis has run on your lemmy comments, and the file can be accessed at the name of the output file name.csv 
 
