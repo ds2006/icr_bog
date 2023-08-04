@@ -5,7 +5,8 @@ This project intends to collect and assess the mental health of individuals and 
 Modules containing relevant techniques were introduced to patients, with a survey being adminstered each week to determine the progress of the patient. To simulate the community aspect of typical group therapy, a forum was created through use of Lemmy, a free and open source software with the ability to host online conversations. A sentiment analysis software known as Vader was then used to analyze the conversations between individuals based on their level of emotion. Subsequently, the survey data was processed and compared to the results gathered from the forum. Both means were used to examine the progress of the patient, as well as the potential next steps.  
 
 
-
+# How to access the slides:
+libreoffice --headless --convert-to pdf presentation_icr.odp
 
 # How to install docker and docker-compose:
 
