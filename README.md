@@ -7,7 +7,7 @@ Modules containing relevant techniques were introduced to patients, with a surve
 
 # How to access the slides:
 ```
-libreoffice --headless --convert-to pdf presentation_icr.odp
+libreoffice --headless --convert-to pdf models_of_care.odp
 ```
 # How to install docker and docker-compose:
 
