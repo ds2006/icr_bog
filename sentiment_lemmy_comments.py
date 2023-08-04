@@ -7,7 +7,7 @@ import pandas as pd
 
 sentiment = SentimentIntensityAnalyzer()
 
-## read in the csv file given the path
+## read in the csv file given the correct path
 df=pd.read_csv("file_name.csv")
 # grab the column with the comments
 specific_column=df["title"]
